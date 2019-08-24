@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NatterBox</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+	<body>
+		<div id="username_container">
+			<input type="text" class="username" id="username_input" name="username_input" placeholder="Display Name..." />
+			<button type="button" id="input_username_btn" class="btn_username button">Save</button>
+		</div>
+				
+		<div id="history"></div>
+		
+		<form id="chat">
+			<input type="text" id="msg_text" name="msg_text" placeholder="Natter here..." /> 
+			<input type="submit" class="button" value="Send!" />
+		</form>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+		
+			var socket = io.connect();
+			
+			$("form#chat").submit(function(e) {
+				
+				e.preventDefault();
+				var msg = $(this).find("#msg_text").val();
+				var user = $("#username_input").val();
+				
+				btnVal = $("#input_username_btn").html();
+				
+				if((user) && (btnVal === "Edit")){
+					if(msg){
+						$("form#chat #msg_text").val("");
+						var data = {
+							username : user,
+							message : msg
+						};
+						socket.emit("send message", data);
+
+					} else {
+						alert("Natterbox is empty!")
+					}
+				} else {
+					alert("Save a display name!")
+				}
+			});
+
+			socket.on("update messages", function(msg) {
+				var final_message = $("<p />").text(msg);
+				$("#history").append(final_message);
+				var historyBox = document.getElementById("history");
+				historyBox.scrollTop = historyBox.scrollHeight;
+			});
+
+			$("#input_username_btn").click(function() {
+
+				btnVal = $("#input_username_btn").html();
+
+				if (btnVal === "Save") {
+					var user = $("#username_input").val();
+					
+					if(user){
+						$("#username_input").prop("readonly", true);
+						$("#username_input").addClass("username_locked");
+						$("#input_username_btn").html("Edit");
+						
+					}else{
+						alert("Save a display name!")
+					}
+					
+				} else {
+					$("#username_input").prop("readonly", false);
+					$("#username_input").removeClass("username_locked");
+					$("#input_username_btn").html("Save");
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+html, body, input {
+ font-family: Georgia, Tahoma, Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+}
+body {
+ background: #302F31;
+ padding: 10px;
+}
+input[type='text'] {
+ border: 2px solid #eb5424;
+ border-radius: 5px;
+ padding: 5px;
+ width: 75%;
+ margin: 15px 0;
+}
+form input[type='submit'] {
+ width: 19%;
+}
+#history {
+ background: #FFF;
+ border: 2px solid #eb5424;
+ height: 550px;
+ overflow: auto;
+ white-space: pre-wrap;      /* CSS3 */   
+ white-space: -moz-pre-wrap; /* Firefox */    
+ white-space: -pre-wrap;     /* Opera <7 */   
+ white-space: -o-pre-wrap;   /* Opera 7 */    
+ word-wrap: break-word;      /* IE */
+}
+input[type='text'].username {
+	width: 200px;
+}
+.btn_username.button {
+    width: 50px;
+}
+.button{
+    background: #eb5424;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 7px 5px;
+    width: 19%;
+}
+.username_locked{
+	color: white;
+	background: #302F31;
+}
+
+ 

@@ -1,0 +1,12 @@
+#Dont track the contents of these subfolders
+/target/
+/.settings
+/node_modules/
+
+#Dont track the contents of the below files
+/*.project
+/*.classpath
+/*.jsdintrc
+/*.sublime-project
+/*.tern-project
+/*package-lock.json
