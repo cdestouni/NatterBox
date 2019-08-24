@@ -6,7 +6,7 @@
 #Dont track the contents of the below files
 /*.project
 /*.classpath
-/*.jsdintrc
+/*.jshintrc
 /*.sublime-project
 /*.tern-project
 /*package-lock.json
